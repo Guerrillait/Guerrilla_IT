@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block getteam %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f2f5, #d9e2ec);
+      color: #333;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .contact-header h1 {
+      font-size: 36px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .contact-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      justify-content: center;
+    }
+
+    .contact-form, .contact-info {
+      flex: 1;
+      min-width: 300px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transform: perspective(1000px) rotateY(0deg);
+      transition: transform 0.4s;
+    }
+
+    .contact-form:hover, .contact-info:hover {
+      transform: perspective(1000px) rotateY(5deg);
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-form input, 
+    .contact-form textarea {
+      margin-bottom: 20px;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #f9f9f9;
+      box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .contact-form button {
+      padding: 15px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      transform: scale(1.05);
+    }
+
+    .contact-info h2 {
+      font-size: 26px;
+      color: #4facfe;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p, .contact-info a {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .map {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+
+    @media(max-width: 768px) {
+      .contact-body {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
+<body>
+
+<div class="contact-container">
+  <div class="contact-header">
+    <h1>Tell us how we can help</h1>
+    <p>Drop us a line describing your needs and we'll take it from there.</p>
+    <small>If you want to join us, please follow the <a href="#">Company &amp; Culture</a> page instructions and send your CV to <a href="">info.guerrillait.net</a>.</small>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-form">
+      <form>
+        <input type="email" placeholder="Email Address (required)" required>
+        <textarea rows="5" placeholder="Message (required)" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h2>Bangladesh</h2>
+      <p>Radio Colony</p>
+      <p>Dhaka 1217, Bangladesh</p>
+      <p>Phone: +880 1511349547</p>
+      <p>Phone: +880 1323769996</p>
+      <p>Email: <a href="">info.guerrillait.net</a></p>
+      <p>Map: <a href="" target="_blank">View Location</a></p>
+
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d300.9148696209079!2d90.26456960666827!3d23.86077917485955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755e980fa1746b1%3A0x4d96d2edb86bd916!2zVjc2Nys2VjgsIOCmuOCmvuCmreCmvuCmsA!5e0!3m2!1sbn!2sbd!4v1745772875852!5m2!1sbn!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+{%endblock getteam%}

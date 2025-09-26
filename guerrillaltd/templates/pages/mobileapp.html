@@ -1,0 +1,855 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mobileapp %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1" />
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --dark: #2b2d42;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --border: #e0e0e0;
+      --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7ff;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat;
+      color: #fff;
+      padding: 100px;
+      text-align: center;
+      background-size: cover;
+      background-position: center center;
+    }
+    header .webtitle {
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      height: 100%%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3.5em;
+      font-weight: bold;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+    header span {
+      color: var(--accent);
+    }
+    
+    .software {
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+    
+    .heading-gutter {
+      text-align: center;
+      color: blueviolet;
+      margin-bottom: 60px;
+    }
+    .heading-gutter h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+    }
+    .heading-gutter h2::after {
+      content: '';
+      position: absolute;
+      width: 70px;
+      height: 4px;
+      background: var(--primary);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .heading-gutter p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .vertical-tabs-section {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .tab-navigation {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border);
+      background: #f9f9f9;
+    }
+    
+    .tab-navigation button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .tab-navigation button:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .tab-navigation button i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--gray);
+      border-width: 2px 2px 0 0;
+    }
+    
+    .tab-navigation .prev-button i {
+      transform: rotate(-135deg);
+      margin-right: 3px;
+    }
+    
+    .tab-navigation .next-button i {
+      transform: rotate(45deg);
+      margin-left: 3px;
+    }
+    
+    .tab-navigation .disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      border-bottom: 1px solid var(--border);
+      background: #f9f9f9;
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .tab-link {
+      padding: 18px 25px;
+      cursor: pointer;
+      white-space: nowrap;
+      position: relative;
+      font-weight: 500;
+      color: var(--gray);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+    .tab-arrow {
+      margin-right: 1rem;
+    }
+    
+    .tab-link i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--gray);
+      border-width: 2px 2px 0 0;
+      transform: rotate(45deg);
+      margin-left: 10px;
+      transition: var(--transition);
+      opacity: 0;
+    }
+    
+    .tab-link:hover {
+      color: var(--primary);
+    }
+    
+    .tab-link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .tab-link.active i {
+      opacity: 1;
+    }
+    
+    .tab-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .tab-content {
+      padding: 40px;
+    }
+    
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .tab-pane.active {
+      display: block;
+    }
+    
+    .tab-pane h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+    }
+    
+    .tab-pane p {
+      color: var(--gray);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    .learn-more {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .learn-more i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--primary);
+      border-width: 2px 2px 0 0;
+      transform: rotate(45deg);
+      margin-left: 8px;
+      transition: var(--transition);
+    }
+    
+    .learn-more:hover {
+      color: var(--primary-light);
+    }
+    
+    .learn-more:hover i {
+      transform: rotate(45deg) translateX(3px);
+    }
+    
+    .btn-action {
+      text-align: center;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+    
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .btn i {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid white;
+      border-width: 2px 2px 0 0;
+      transform: rotate(45deg);
+      margin-left: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .heading-gutter h2 {
+        font-size: 2rem;
+      }
+    
+      .heading-gutter p {
+        font-size: 1rem;
+      }
+    
+      .tab-content {
+        padding: 30px 20px;
+      }
+    
+      .tab-pane h3 {
+        font-size: 1.5rem;
+      }
+    
+      .tab-pane p {
+        font-size: 1rem;
+      }
+    }
+    
+    .service-slider {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slider-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .slider-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #6c63ff, #a29dff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    
+    .slider-header p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .slider-container {
+      position: relative;
+      padding: 2rem 0;
+    }
+    
+    .slider-track {
+      margin-right: 100px;
+      margin-left: 100px;
+      display: flex;
+      transition: var(--transition);
+      will-change: transform;
+    }
+    
+    .service-card {
+      min-width: 100%;
+      padding: 0 1rem;
+      transition: var(--transition);
+      text-align: left;
+    }
+    
+    .card-inner {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px -15px rgba(108, 99, 255, 0.2);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.95);
+      opacity: 0.6;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .service-card.active .card-inner {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 25px 50px -15px rgba(108, 99, 255, 0.3);
+    }
+    
+    .card-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+    }
+    
+    .card-content {
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    
+    .card-content p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .card-features {
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+    
+    .card-features li {
+      list-style: none;
+      padding: 0.5rem 0;
+      padding-left: 1.75rem;
+      position: relative;
+    }
+    
+    .card-features li:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    
+    .card-button {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px -5px rgba(108, 99, 255, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .card-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px -5px rgba(108, 99, 255, 0.4);
+    }
+    
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+    
+    .slider-dots {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .slider-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+    
+    .slider-arrow {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      border: none;
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    
+    .slider-arrow:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    @media (min-width: 768px) {
+      .service-card {
+        min-width: 50%;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .service-card {
+        min-width: 33.333%;
+      }
+    }
+  </style>
+
+  <body>
+    <header>
+      <h1 class="webtitle">Every Step in Mobile App Development <span>Covered.</span></h1>
+    </header>
+    <div class="software">
+      <div class="heading-gutter">
+        <h2>Mobile Application Development Services</h2>
+        <p>Finoit is a leading mobile app development company providing a wide range of app development services designed to meet business needs. From android app development to cross-platform solutions, we focus on responsiveness, security, and innovation throughout the development process.</p>
+      </div>
+
+      <div class="vertical-tabs-section">
+        <div class="tab-navigation">
+          <span class="prev-button disabled"><button><i class="arr-left"></i></button></span>
+          <span class="next-button"><button><i class="arr-right"></i></button></span>
+        </div>
+        <ul class="nav-tabs" id="navTabs">
+          <li class="tab-link" data-tab="tab1">
+            <i class="tab-arrow"></i> Mobile App Consulting
+          </li>
+          <li class="tab-link active" data-tab="tab2">
+            <i class="tab-arrow"></i> Custom Mobile App Development
+          </li>
+          <li class="tab-link" data-tab="tab3">
+            <i class="tab-arrow"></i> Mobile App Design
+          </li>
+          <li class="tab-link" data-tab="tab4">
+            <i class="tab-arrow"></i> Mobile App Integration
+          </li>
+          <li class="tab-link" data-tab="tab5">
+            <i class="tab-arrow"></i> Legacy Application Modernization
+          </li>
+          
+        </ul>
+        <div class="tab-content">
+          <div id="tab1" class="tab-pane">
+            <h3>Mobile App Consulting</h3>
+            <p>Our mobile app consulting services guide businesses through the entire app development project, from strategy to launch. We ensure cross-platform compatibility, helping businesses develop apps that deliver a seamless user experience on all mobile devices. Whether you need help with android app development or iOS, our consulting aligns the app closely with your business objectives.</p>
+          </div>
+
+          <div id="tab2" class="tab-pane active">
+            <h3>Custom Mobile App Development</h3>
+            <p>Custom mobile app development focuses on creating scalable, high-performing, and secure apps. Designed for platforms like Google Play and the App Store, we offer customization and utilize modern programming languages like React Native to ensure top-notch mobile solutions.</p>
+          </div>
+
+          <div id="tab3" class="tab-pane">
+            <h3>Mobile App Design</h3>
+            <p>Our UI/UX design services prioritize user-friendly interfaces that enhance engagement. By focusing on responsiveness and aesthetic appeal, we create designs that are intuitive and aligned with your brand across Android and iOS platforms.</p>
+          </div>
+
+          <div id="tab5" class="tab-pane">
+            <h3>Mobile App Integration</h3>
+            <p>We offer mobile app integration services that ensure seamless integration with existing systems, enhancing the performance and scalability of your mobile applications. This integration enables real-time data flow, making your app a more effective tool for business operations.</p>
+          </div>
+
+          <div id="tab7" class="tab-pane">
+            <h3>Legacy Software Modernization</h3>
+            <p>We modernize legacy systems with enhanced cybersecurity, improved UI/UX, reduced maintenance costs, and optimized hosting, ensuring minimal disruption to business workflows and long-term cost savings.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-action">
+        <button class="btn">Get a Tailored Proposal</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.tab-link')
+        const tabPanes = document.querySelectorAll('.tab-pane')
+        const navTabs = document.getElementById('navTabs')
+        const prevButton = document.querySelector('.prev-button')
+        const nextButton = document.querySelector('.next-button')
+      
+        // Tab click functionality
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', function () {
+            // Remove active class from all tabs and panes
+            tabs.forEach((t) => t.classList.remove('active'))
+            tabPanes.forEach((pane) => pane.classList.remove('active'))
+      
+            // Add active class to clicked tab and corresponding pane
+            this.classList.add('active')
+            const tabId = this.getAttribute('data-tab')
+            document.getElementById(tabId).classList.add('active')
+      
+            // Update navigation buttons
+            updateNavButtons()
+            scrollToActiveTab()
+          })
+        })
+      
+        // Navigation buttons functionality
+        prevButton.addEventListener('click', scrollToPrevTab)
+        nextButton.addEventListener('click', scrollToNextTab)
+      
+        // Update navigation buttons state
+        function updateNavButtons() {
+          const activeTab = document.querySelector('.tab-link.active')
+          const activeIndex = Array.from(tabs).indexOf(activeTab)
+      
+          prevButton.classList.toggle('disabled', activeIndex === 0)
+          nextButton.classList.toggle('disabled', activeIndex === tabs.length - 1)
+        }
+      
+        // Scroll to previous tab
+        function scrollToPrevTab() {
+          const activeTab = document.querySelector('.tab-link.active')
+          const activeIndex = Array.from(tabs).indexOf(activeTab)
+      
+          if (activeIndex > 0) {
+            tabs[activeIndex - 1].click()
+          }
+        }
+      
+        // Scroll to next tab
+        function scrollToNextTab() {
+          const activeTab = document.querySelector('.tab-link.active')
+          const activeIndex = Array.from(tabs).indexOf(activeTab)
+      
+          if (activeIndex < tabs.length - 1) {
+            tabs[activeIndex + 1].click()
+          }
+        }
+      
+        // Scroll to make active tab visible
+        function scrollToActiveTab() {
+          const activeTab = document.querySelector('.tab-link.active')
+          activeTab.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          })
+        }
+      
+        // Initialize
+        updateNavButtons()
+      
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') {
+            scrollToPrevTab()
+          } else if (e.key === 'ArrowRight') {
+            scrollToNextTab()
+          }
+        })
+      })
+    </script>
+
+    <div class="service-slider">
+      <div class="slider-header">
+        <h2>Type of Mobile App We Develop</h2>
+        <p>We specialize in developing a wide range of mobile applications that meet the specific needs of businesses, from startups to large enterprises. Our development process ensures that each app, whether native or cross-platform, is built for optimal performance, scalability, and user experience.</p>
+      </div>
+
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <!-- Card 1 -->
+          <div class="service-card active">
+            <div class="card-inner">
+              <div class="card-image">🛠️</div>
+              <div class="card-content">
+                <h3>Custom Development</h3>
+                <p>Tailored software solutions designed specifically for your unique business requirements.</p>
+                <ul class="card-features">
+                  <li>Bespoke application development</li>
+                  <li>Scalable architecture</li>
+                  <li>API integrations</li>
+                  <li>Ongoing support</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">🏢</div>
+              <div class="card-content">
+                <h3>Enterprise Solutions</h3>
+                <p>Robust systems for large organizations with complex operational needs.</p>
+                <ul class="card-features">
+                  <li>High-availability systems</li>
+                  <li>Enterprise security</li>
+                  <li>Legacy modernization</li>
+                  <li>24/7 monitoring</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">☁️</div>
+              <div class="card-content">
+                <h3>SaaS Platforms</h3>
+                <p>Cloud-based software solutions with subscription models and automatic updates.</p>
+                <ul class="card-features">
+                  <li>Multi-tenant architecture</li>
+                  <li>Subscription billing</li>
+                  <li>Automatic scaling</li>
+                  <li>Usage analytics</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">📱</div>
+              <div class="card-content">
+                <h3>Mobile Applications</h3>
+                <p>Cross-platform mobile apps that deliver seamless user experiences.</p>
+                <ul class="card-features">
+                  <li>iOS and Android development</li>
+                  <li>Offline capabilities</li>
+                  <li>Push notifications</li>
+                  <li>App store optimization</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-nav">
+        <button class="slider-arrow" id="prevBtn">←</button>
+        <div class="slider-dots" id="sliderDots">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+        <button class="slider-arrow" id="nextBtn">→</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const sliderTrack = document.getElementById('sliderTrack')
+        const cards = document.querySelectorAll('.service-card')
+        const dots = document.querySelectorAll('.slider-dot')
+        const prevBtn = document.getElementById('prevBtn')
+        const nextBtn = document.getElementById('nextBtn')
+      
+        let currentIndex = 0
+        const cardCount = cards.length
+        const cardWidth = 100 / cardCount
+      
+        function updateSlider() {
+          // Update track position
+          sliderTrack.style.transform = `translateX(-${currentIndex * cardWidth}%)`
+      
+          // Update active card
+          cards.forEach((card, index) => {
+            card.classList.toggle('active', index === currentIndex)
+          })
+      
+          // Update dots
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex)
+          })
+        }
+      
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % cardCount
+          updateSlider()
+        }
+      
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + cardCount) % cardCount
+          updateSlider()
+        }
+      
+        // Button events
+        nextBtn.addEventListener('click', nextSlide)
+        prevBtn.addEventListener('click', prevSlide)
+      
+        // Dot navigation
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            currentIndex = index
+            updateSlider()
+          })
+        })
+      
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') nextSlide()
+          if (e.key === 'ArrowLeft') prevSlide()
+        })
+      
+        // Responsive card width adjustment
+        function adjustCardWidth() {
+          if (window.innerWidth >= 1024) {
+            cards.forEach((card) => {
+              card.style.minWidth = `${100 / 3}%`
+            })
+          } else if (window.innerWidth >= 768) {
+            cards.forEach((card) => {
+              card.style.minWidth = '50%'
+            })
+          } else {
+            cards.forEach((card) => {
+              card.style.minWidth = '100%'
+            })
+          }
+          updateSlider()
+        }
+      
+        window.addEventListener('resize', adjustCardWidth)
+        adjustCardWidth()
+      })
+    </script>
+  </body>
+{% endblock %}

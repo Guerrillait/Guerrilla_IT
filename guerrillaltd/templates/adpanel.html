@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block adpanel %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="{% static 'css/adpanel.css' %}" />
+
+<header>
+  <div class="container">
+    <h1>Our Advisory Panel</h1>
+    <p>Meet the experts guiding our strategic vision and technological innovation</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="advisors">
+    <h2 class="section-title">Industry Leaders & Visionaries</h2>
+    <div class="advisor-grid">
+      {% for advisor in advisors %}
+      <div class="advisor-card">
+        <div class="advisor-image">
+          <img src="{{ advisor.image.url }}" alt="{{ advisor.name }}">
+          <div class="advisor-overlay">
+            <h3 class="advisor-name">{{ advisor.name }}</h3>
+            <p class="advisor-title">{{ advisor.title }}</p>
+          </div>
+        </div>
+        <div class="advisor-bio">
+          <p>{{ advisor.bio }}</p>
+          <div class="expertise-tags">
+            {% for exp in advisor.expertise.all %}
+            <span class="tag">{{ exp.name }}</span>
+            {% endfor %}
+          </div>
+          <div class="advisor-social">
+            {% if advisor.linkedin %}<a href="{{ advisor.linkedin }}"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+            {% if advisor.twitter %}<a href="{{ advisor.twitter }}"><i class="fab fa-twitter"></i></a>{% endif %}
+            {% if advisor.github %}<a href="{{ advisor.github }}"><i class="fab fa-github"></i></a>{% endif %}
+            {% if advisor.website %}<a href="{{ advisor.website }}"><i class="fas fa-globe"></i></a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <h2 class="section-title" style="color:white;">Our Advisory Impact</h2>
+      <div class="stats-container">
+        {% for stat in stats %}
+        <div class="stat-item">
+          <div class="stat-number">{{ stat.value }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonial-slider">
+      {% for testimonial in testimonials %}
+      <div class="testimonial {% if forloop.first %}active{% endif %}">
+        <p class="testimonial-text">{{ testimonial.text }}</p>
+        <div class="testimonial-author">{{ testimonial.author }}</div>
+        <div class="testimonial-role">{{ testimonial.role }}</div>
+      </div>
+      {% endfor %}
+      <div class="slider-controls">
+        {% for testimonial in testimonials %}
+        <div class="slider-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="{% static 'js/adpanel.js' %}"></script>
+{% endblock %}

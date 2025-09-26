@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block blog %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: #f5f5f5;
+    color: #333;
+  }
+
+  .hero {
+    background: url('https://scontent.fdac177-1.fna.fbcdn.net/v/t39.30808-6/482987967_3269486256527628_8552804888959919779_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHxHXTGGdMbf5vd5VLIYlCrjAhy6kzrCkKMCHLqTOsKQiM2KHrphArMe6HTTbb65wnjKXcJbMlfKnibINZ_44TF&_nc_ohc=7tUZ_DLzojUQ7kNvwGfneXh&_nc_oc=AdklbduC2OETSgphOeiRuXy0LrkHyl_A4sHRIpMpyRifWiJt0KiLTJyJC-dmnx2JzAQ&_nc_zt=23&_nc_ht=scontent.fdac177-1.fna&_nc_gid=xDZoBKWjaYUxhvwH5YXhsg&oh=00_AfEOvZdN2I28szD-rFkQtkhNeluninWnAOB0YrTtu8lpRQ&oe=681687ED') no-repeat center center/cover;
+    background-size: cover;
+    background-position: center center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+
+    
+  }
+  
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    max-width: 600px;
+    font-size: 1.2rem;
+  }
+
+  .blog-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 20px;
+  }
+
+  .blog-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .blog-content {
+    padding: 20px;
+  }
+
+  .blog-content .category {
+    font-size: 0.9rem;
+    color: #007bff;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+
+  .blog-content .date {
+    font-size: 0.8rem;
+    color: gray;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .blog-content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Floating social icons */
+  .social-icons {
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+
+  .social-icons a {
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s;
+  }
+
+  .social-icons a:hover {
+    background: #007bff;
+    color: #fff;
+  }
+
+  /* Scroll to top button */
+  .scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 1000;
+  }
+
+  /* See More button */
+  .see-more {
+    display: block;
+    margin: 2rem auto;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+
+  .see-more:hover {
+    background: #0056b3;
+  }
+</style>
+
+<body>
+
+  <!-- Social Icons -->
+  <div class="social-icons">
+    <a href="#">F</a>
+    <a href="#">T</a>
+    <a href="#">L</a>
+    <a href="#">I</a>
+  </div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="bg_colour">Blog</h1>
+    <p>The sad thing is the majority of people have no clue about what they truly want. They have no clarity.</p>
+  </section>
+  
+  <!-- Blog Cards -->
+  <section class="blog-container">
+    
+    {% for post in posts  %}
+      
+    
+      
+    <div class="blog-card">
+      <img src="{{ post.urlToImage }}" alt="Blog 1">
+      <div class="blog-content">
+        <span class="category">{{ post.labels.0|default:"General" }}</span>
+        <span class="date">{{ post.publishedAt|date:"M d, Y" }}</span>
+        <h3>{{post.title}}</h3>
+      </div>
+    </div>
+    
+    {% endfor %}
+  </section>
+  <!-- See More Button -->
+  <button class="see-more">See More</button>
+  
+  <!-- Scroll to Top -->
+  <div class="scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+    ↑
+  </div>
+  
+</body>
+
+{% endblock blog %}
+    

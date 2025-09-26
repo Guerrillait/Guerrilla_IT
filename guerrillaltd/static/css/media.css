@@ -1,0 +1,195 @@
+
+
+/* responsive design Navbar section*/
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background-color: transparent;
+        box-shadow: none;
+        padding-left: 20px;
+    }
+
+    .navbar .dropdown-menu li a {
+        padding: 8px 0;
+    }
+
+
+}
+
+/* ---------- Responsive styles index page ----------*/
+@media (max-width: 1024px) {
+    .contact-section, .testimonial-slider, .who-we-are-container, .services {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .contact-info, .office-hours, .map-container, .testimonial-container, .who-box, .service-grid {
+        width: 100%;
+        padding: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .video-container, .who-we-are-container, .hero-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .video-text, .video-frame, .who-box, .service-card {
+        width: 100%;
+        padding: 20px;
+    }
+    .video-grid, .difference-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .testimonial-container {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+@media (max-width: 480px) {
+    .video-grid, .difference-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .contact-info, .office-hours, .map-container, .service-card {
+        padding: 10px;
+    }
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    .hero-content p {
+        font-size: 16px;
+    }
+    .cta-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .testimonial-container {
+        padding: 15px;
+    }
+}
+
+/* ---------- Responsive Design Blog Section----------*/
+@media (max-width: 1024px) {
+    .blog-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-section {
+        text-align: center;
+    }
+
+    .blog-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .blog-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .blog-card {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+/* ---------- Responsive Design Partner Section ---------- */
+@media (max-width: 1024px) {
+    .partner-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .partner-content {
+        max-width: 100%;
+    }
+    .partner-image {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .partner-section {
+        padding: 40px 20px;
+    }
+    .partner-content h2 {
+        font-size: 1.8rem;
+    }
+    .partner-content p {
+        font-size: 0.9rem;
+    }
+    .btn-primary {
+        font-size: 0.9rem;
+    }
+    .partner-image {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-content h2 {
+        font-size: 1.6rem;
+    }
+    .partner-content p {
+        font-size: 0.85rem;
+    }
+    .btn-primary {
+        font-size: 0.85rem;
+        padding: 10px 20px;
+    }
+    .partner-image img {
+        max-width: 100%;
+    }
+}
+
+
+/* ---------- Responsive Design Services Section ---------- */
+
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .service-card {
+        padding: 40px 30px;
+    }
+
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+}

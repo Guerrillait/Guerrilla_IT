@@ -1,0 +1,740 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block course %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4FC3F7;
+            --accent: #FF6584;
+            --light: #FAFAFA;
+            --dark: #2D2B55;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --card-bg: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #757575;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .search-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .course-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.05);
+        }
+
+        .course-content {
+            padding: 1.8rem;
+        }
+
+        .course-category {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .course-info span {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-info i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .course-description {
+            margin-bottom: 1.8rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 1.5rem;
+        }
+
+        .course-price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .course-price s {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-right: 0.5rem;
+        }
+
+        .enroll-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .enroll-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.4);
+        }
+
+        .enroll-btn i {
+            margin-left: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-title {
+            margin-bottom: 1.8rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .confirmation i {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: scaleUp 0.5s ease;
+        }
+
+        @keyframes scaleUp {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .confirmation h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .confirmation p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Payment Methods Styles */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-method {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .payment-method .method-name {
+            font-weight: 500;
+        }
+
+        .payment-form {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .payment-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .card-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .form-group-relative {
+            position: relative;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Discover Your Perfect Course</h1>
+            <p class="tagline">Expand your knowledge with our curated selection of premium courses</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search for courses, topics, or instructors...">
+                <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="courses-container">
+            <div class="section-title">
+                <h2>Featured Courses</h2>
+                <p>Handpicked selection of our most popular and highly-rated courses</p>
+            </div>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-badge">Bestseller</div>
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Web Development">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Programming</span>
+                        <h3 class="course-title">Complete Web Development Bootcamp 2023</h3>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 62 hours</span>
+                            <span><i class="fas fa-user-graduate"></i> Beginner to Advanced</span>
+                        </div>
+                        <p class="course-description">Master HTML, CSS, JavaScript, React, Node.js, and More. Build real-world projects and create a portfolio that gets you hired.</p>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <s>$129.99</s> $89.99
+                            </div>
+                            <button class="enroll-btn" data-course="Complete Web Development Bootcamp 2023" data-price="89.99">Enroll Now <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-badge">Hot & New</div>
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Data Science">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Data Science</span>
+                        <h3 class="course-title">Data Science & Machine Learning with Python</h3>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 48 hours</span>
+                            <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                        </div>
+                        <p class="course-description">Learn data analysis, visualization, and machine learning using Python, Pandas, NumPy, Scikit-Learn, and TensorFlow.</p>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <s>$149.99</s> $99.99
+                            </div>
+                            <button class="enroll-btn" data-course="Data Science & Machine Learning with Python" data-price="99.99">Enroll Now <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Digital Marketing">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Marketing</span>
+                        <h3 class="course-title">Digital Marketing Masterclass</h3>
+                        <div class="course-info">
+                            <span><i class="far fa-clock"></i> 36 hours</span>
+                            <span><i class="fas fa-user-graduate"></i> All Levels</span>
+                        </div>
+                        <p class="course-description">Learn SEO, Google Ads, Facebook Ads, email marketing, content marketing, social media, and more.</p>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <s>$119.99</s> $79.99
+                            </div>
+                            <button class="enroll-btn" data-course="Digital Marketing Masterclass" data-price="79.99">Enroll Now <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enrollment Modal with Payment -->
+    <div class="modal" id="enrollModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="enrollment-form">
+                <h2 class="modal-title">Enroll in <span id="course-name"></span></h2>
+                <p class="course-price" id="modal-course-price" style="text-align: center; margin-bottom: 1.5rem;"></p>
+                
+                <form id="enroll-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <h3 style="margin: 1.5rem 0 1rem; color: var(--dark);">Select Payment Method</h3>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span class="method-name">Credit/Debit Card</span>
+                        </div>
+                        <div class="payment-method" data-method="bkash">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span class="method-name">bKash</span>
+                        </div>
+                        <div class="payment-method" data-method="rocket">
+                            <i class="fas fa-rocket"></i>
+                            <span class="method-name">Rocket</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Card Form -->
+                    <div class="payment-form" id="card-form">
+                        <div class="form-group-relative">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            <i class="fab fa-cc-visa card-icon"></i>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">Expiry Date</label>
+                                <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvc">CVC</label>
+                                <input type="text" id="card-cvc" placeholder="123" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    
+                    <!-- bKash Form -->
+                    <div class="payment-form" id="bkash-form">
+                        <div class="form-group">
+                            <label for="bkash-number">bKash Phone Number</label>
+                            <input type="text" id="bkash-number" placeholder="01XXX-XXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bkash-transaction">Transaction ID</label>
+                            <input type="text" id="bkash-transaction" placeholder="Enter transaction ID" required>
+                        </div>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-top: -0.5rem;">
+                            <i class="fas fa-info-circle"></i> Please make payment to bKash Merchant Number: 01234567890
+                        </p>
+                    </div>
+                    
+                    <!-- Rocket Form -->
+                    <div class="payment-form" id="rocket-form">
+                        <div class="form-group">
+                            <label for="rocket-number">Rocket Phone Number</label>
+                            <input type="text" id="rocket-number" placeholder="01XXX-XXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rocket-transaction">Transaction ID</label>
+                            <input type="text" id="rocket-transaction" placeholder="Enter transaction ID" required>
+                        </div>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-top: -0.5rem;">
+                            <i class="fas fa-info-circle"></i> Please make payment to Rocket Merchant Number: 01234567890
+                        </p>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="pay-button">Pay Now</button>
+                </form>
+            </div>
+            <div class="confirmation" id="confirmation-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Payment Successful!</h3>
+                <p>Thank you for enrolling in <span id="confirmed-course"></span>. We've sent a confirmation email with course details and access instructions.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+
+<script src="{% static 'js/course.js' %}"></script>
+    
+{% endblock course %}
+    

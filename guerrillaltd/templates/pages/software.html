@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block software %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1" />
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --dark: #2b2d42;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --border: #e0e0e0;
+      --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    
+  </style>
+
+  <body>
+    <header>
+      <h1 class="webtitle">Every Step in Software Development <span>Covered.</span></h1>
+    </header>
+    <div class="software">
+      <div class="heading-gutter">
+        <h2>What Our Software Development Services Include?</h2>
+        <p>Finoit offers tailored software development services, from business analysis and consulting to maintenance and legacy modernization, delivering innovative solutions that drive efficiency and value for businesses at every stage.</p>
+      </div>
+
+      <div class="vertical-tabs-section">
+        <div class="tab-navigation">
+          <span class="prev-button disabled"><button><i class="arr-left"></i></button></span>
+          <span class="next-button"><button><i class="arr-right"></i></button></span>
+        </div>
+        <ul class="nav-tabs" id="navTabs">
+          <li class="tab-link" data-tab="tab1">
+            <i class="tab-arrow"></i> Software Consulting
+          </li>
+          <li class="tab-link active" data-tab="tab2">
+            <i class="tab-arrow"></i> UI/UX Design
+          </li>
+          <li class="tab-link" data-tab="tab3">
+            <i class="tab-arrow"></i> MVP Development
+          </li>
+          <li class="tab-link" data-tab="tab4">
+            <i class="tab-arrow"></i> Software Integration
+          </li>
+          <li class="tab-link" data-tab="tab5">
+            <i class="tab-arrow"></i> Software Testing
+          </li>
+          <li class="tab-link" data-tab="tab6">
+            <i class="tab-arrow"></i> Software Maintenance and Support
+          </li>
+          <li class="tab-link" data-tab="tab7">
+            <i class="tab-arrow"></i> Legacy Software Modernization
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab1" class="tab-pane">
+            <h3>Software Consulting</h3>
+            <p>We analyze business needs, conceptualize innovative & client centric solutions, select the right technology stack, and guide growth strategies across AI, Blockchain, and IoT. Our client-centric approach ensures reliable and smooth implementation, delivering quality-centered solutions from user acquisition to monetization.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab2" class="tab-pane active">
+            <h3>UI/UX Design</h3>
+            <p>We design intuitive, user-friendly interfaces tailored to your target audience. Our focus on usability best practices and attention to detail ensures the final product reflects your brand identity while enhancing user satisfaction and engagement.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab3" class="tab-pane">
+            <h3>MVP Development</h3>
+            <p>We prioritize essential features to launch your product within 1–3 months. By gathering user feedback, we implement continuous improvements every 2–3 weeks, minimizing risk while accelerating time-to-market for a more refined product.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab4" class="tab-pane">
+            <h3>Software Integration</h3>
+            <p>We integrate tools like ERP, CRM, supply chain management, and e-commerce platforms using IoT, AI, and ML technologies. We develop customized integration strategies that align with business goals and maximize the value of your existing computer software.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab5" class="tab-pane">
+            <h3>Software Testing</h3>
+            <p>We ensure high-quality application software through manual and automated testing, following established QA standards. Our comprehensive testing guarantees smooth, error-free operations, enhancing security, functionality, and user experience.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab6" class="tab-pane">
+            <h3>Software Maintenance and Support</h3>
+            <p>We ensure your software stays optimized and secure with proactive performance monitoring, fast issue resolution, and regular updates. We continually evolve to meet changing user needs and business requirements.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+
+          <div id="tab7" class="tab-pane">
+            <h3>Legacy Software Modernization</h3>
+            <p>We modernize legacy systems with enhanced cybersecurity, improved UI/UX, reduced maintenance costs, and optimized hosting, ensuring minimal disruption to business workflows and long-term cost savings.</p>
+            <div class="text-left">
+              <a class="learn-more" href="#" target="_blank" rel="noopener">Learn More <i class="arr-rght"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-action">
+        <button class="btn">Get a Tailored Proposal</button>
+      </div>
+    </div>
+
+    
+
+    <div class="service-slider">
+      <div class="slider-header">
+        <h2>Our Software Services</h2>
+        <p>Innovative solutions tailored to your business needs with cutting-edge technology</p>
+      </div>
+
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <!-- Card 1 -->
+          <div class="service-card active">
+            <div class="card-inner">
+              <div class="card-image">🛠️</div>
+              <div class="card-content">
+                <h3>Custom Development</h3>
+                <p>Tailored software solutions designed specifically for your unique business requirements.</p>
+                <ul class="card-features">
+                  <li>Bespoke application development</li>
+                  <li>Scalable architecture</li>
+                  <li>API integrations</li>
+                  <li>Ongoing support</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">🏢</div>
+              <div class="card-content">
+                <h3>Enterprise Solutions</h3>
+                <p>Robust systems for large organizations with complex operational needs.</p>
+                <ul class="card-features">
+                  <li>High-availability systems</li>
+                  <li>Enterprise security</li>
+                  <li>Legacy modernization</li>
+                  <li>24/7 monitoring</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">☁️</div>
+              <div class="card-content">
+                <h3>SaaS Platforms</h3>
+                <p>Cloud-based software solutions with subscription models and automatic updates.</p>
+                <ul class="card-features">
+                  <li>Multi-tenant architecture</li>
+                  <li>Subscription billing</li>
+                  <li>Automatic scaling</li>
+                  <li>Usage analytics</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="service-card">
+            <div class="card-inner">
+              <div class="card-image">📱</div>
+              <div class="card-content">
+                <h3>Mobile Applications</h3>
+                <p>Cross-platform mobile apps that deliver seamless user experiences.</p>
+                <ul class="card-features">
+                  <li>iOS and Android development</li>
+                  <li>Offline capabilities</li>
+                  <li>Push notifications</li>
+                  <li>App store optimization</li>
+                </ul>
+                <button class="card-button">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-nav">
+        <button class="slider-arrow" id="prevBtn">←</button>
+        <div class="slider-dots" id="sliderDots">
+          <div class="slider-dot active"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+          <div class="slider-dot"></div>
+        </div>
+        <button class="slider-arrow" id="nextBtn">→</button>
+      </div>
+    </div>
+
+    
+
+    <section class="process-gutter">
+      <div class="containers">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Our Software Development Process For Success</h2>
+            <p>At Our Company, we follow a comprehensive, structured process that delivers tailored, high-quality, and scalable software solutions from conceptualization to post-launch support, ensuring alignment with client goals and maximum impact.</p>
+            <button class="btn primary lg hideOnMobile">Get a Tailored Proposal →</button>
+          </div>
+          <div class="col-md-6">
+            <div class="toggle-col">
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon1">•</i> Conceptualization
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We collaborate with clients to define vision, goals, and core features, performing in-depth analysis to align project scope with business objectives, assess challenges, and develop a roadmap for success.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon2">•</i> Planning
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We create a detailed roadmap with tasks, timelines, and resources, ensuring transparency, risk mitigation, and budget management. Our project managers work closely with clients to set clear, realistic expectations.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon3">•</i> Designing
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>Our design phase focuses on building user-friendly, visually appealing interfaces and optimizing UI/UX and software architecture for functionality, scalability, and seamless user engagement.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon4">•</i> Building
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We turn designs into reality using clean, scalable code. Offering prototypes and MVPs, we ensure seamless functionality integration and flexibility for future growth through cutting-edge technologies.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon5">•</i> Testing
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We rigorously test for bugs, security, and performance across platforms, ensuring the software meets the highest quality standards before deployment with functional, security, and performance testing.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon6">•</i> Deployment
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We launch the software in live environments, configuring servers and ensuring system compatibility. Our team provides a smooth, disruption-free transition from development to production.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle">
+                <div class="h3">
+                  <i class="icon2">•</i> Support and Maintenance
+                </div>
+                <div class="toggle-box">
+                  <div class="data">
+                    <p>We provide continuous support, offering regular updates, security patches, and performance optimizations to ensure long-term software relevancy, security, and alignment with evolving business needs.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'js/process.js' %}"></script>
+    <script src="{% static 'js/services-slide.js' %}"></script>
+    <script src="{% static 'js/vertical-tabs.js' %}"></script>
+  </body>
+{% endblock %}

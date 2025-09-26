@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block container %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1" />
+  <link rel="stylesheet" href="{% static 'css/media.css' %}?v=1.0.1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+
+  <div class="hero-container">
+    <div class="carousel">
+      <div class="slide" data-title="Artificial Intelligence is Reshaping Industries!" data-text="AI is transforming healthcare, finance, and e-commerce with automation, predictive analytics, and smart decision-making." style="background-image: url('{% static 'images/hero-bg.jpg' %}');"></div>
+      <div class="slide" data-title="ML Powers Smart Applications" data-text="From recommendation systems to fraud detection, ML is revolutionizing how businesses make data-driven decisions." style="background-image: url('{% static 'images/hero-bg2.jpg' %}');"></div>
+      <div class="slide" data-title="Will AI Replace Developers?" data-text="AI-assisted coding tools are accelerating software development, but human creativity remains irreplaceable." style="background-image: url('{% static 'images/hero-bg3.jpg' %}');"></div>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content" id="hero-text">
+      <h1 id="hero-title">Your digital solution is here!</h1>
+      <p id="hero-desc">Take advantage of our cutting-edge software and web development services.</p>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </div>
+  <script src="{% static 'js/hero.js' %}"></script>
+
+  <section>
+    <div class="floating-bg"></div>
+    <div class="services-container">
+      <div class="section-header">
+        <h2>Next-Gen Digital Solutions</h2>
+        <p>Transform your business with our premium suite of technology services designed for the modern era</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <a href="{% url 'software' %}" style="text-decoration: none;"><div class="card-icon">
+            <i class="fas fa-code"></i>
+          </div></a>
+          <h3>Software Development</h3>
+          <p>Enterprise-grade custom solutions with scalable architecture and seamless integration</p>
+        </div>
+
+        <div class="service-card">
+          <a href="{% url 'webdev' %}" style="text-decoration: none;"><div class="card-icon">
+            <i class="fas fa-globe"></i>
+          </div></a>
+          <h3>Web Development</h3>
+          <p>Immersive web experiences built with cutting-edge frameworks and pixel-perfect design</p>
+        </div>
+
+        <div class="service-card">
+          <a href="{% url 'mobileapp' %}" style="text-decoration: none;"><div class="card-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div></a>
+          <h3>Mobile App Development</h3>
+          <p>Premium native applications with flawless performance and elegant interfaces</p>
+        </div>
+
+        <div class="service-card">
+          <a href="{% url 'd_marketing' %}" style="text-decoration: none;"><div class="card-icon">
+            <i class="fas fa-rocket"></i>
+          </div></a>
+          <h3>Digital Marketing</h3>
+          <p>Data-driven strategies leveraging AI and machine learning for maximum ROI</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-video">
+    <div class="video-container">
+      <div class="video-text">
+        <h2>What's Guerrilla IT all about?</h2>
+        <p>Learn how we started and what drives us to solve IT problems for organizations.</p>
+      </div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/sample_video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-gallery">
+    <h2>Latest Insights & Webinars</h2>
+    <div class="video-grid">
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video1" frameborder="0" allowfullscreen></iframe>
+        <p>3 Cybersecurity Myths That Endanger Your Business</p>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video2" frameborder="0" allowfullscreen></iframe>
+        <p>The Secret Ingredient to Excellent Service</p>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video3" frameborder="0" allowfullscreen></iframe>
+        <p>Breached Report: Spartan-Level Cybersecurity</p>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video4" frameborder="0" allowfullscreen></iframe>
+        <p>79% of Organizations Were Targeted with Ransomware in 2022</p>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video5" frameborder="0" allowfullscreen></iframe>
+        <p>Cybersecurity in 3 Minutes</p>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/sample_video6" frameborder="0" allowfullscreen></iframe>
+        <p>How Hackers See Your Business</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="git-difference">
+    <h2 class="section-title">THE GUERRILLA DEFENSE</h2>
+    <div class="difference-grid">
+      <div class="difference-card">
+        <div class="icon">
+          <img src="{% static 'icons/engineering.png' %}" alt="Engineering" />
+        </div>
+        <p>Dedicated Engineering Team</p>
+      </div>
+      <div class="difference-card">
+        <div class="icon">
+          <img src="{% static 'icons/help-desk.png' %}" alt="Help Desk" />
+        </div>
+        <p>No Tiered Help Desk</p>
+      </div>
+      <div class="difference-card">
+        <div class="icon">
+          <img src="{% static 'icons/planning.png' %}" alt="Planning" />
+        </div>
+        <p>Proactive Planning</p>
+      </div>
+
+      <div class="difference-card">
+        <div class="icon">
+          <img src="{% static 'icons/ciso.png' %}" alt="SWE Consulting" />
+        </div>
+        <p>SWE Consulting</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="who-we-are">
+    <div class="who-we-are-container">
+      <div class="who-box left">
+        <h2 class="who-title">Who we are.</h2>
+        <p class="who-text">Our mission is to impact the lives touched by technology. To that end, our vision is to help 6,000 businesses realize their goals through technology.</p>
+        <a href="#" class="learn-more">Learn More</a>
+      </div>
+      <div class="who-box right">
+        <h2 class="who-title">What we do.</h2>
+        <p class="who-text">Guerrilla Solutions offers managed IT services and cybersecurity services to help organizations reduce IT costs and downtime, increase efficiency by up to 40%, and protect against cyberattacks.</p>
+        <a href="#" class="learn-more">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="left-section">
+      <span class="blog-label">Blog Posts</span>
+      <h2 class="section-title">Get Industry Insights</h2>
+      <div class="nanner_ad">
+        <img src="" alt="" />
+      </div>
+    </div>
+    <div class="blog-container">
+      <div class="blog-card">
+        <img src="{% static 'images/blog1.jpg' %}" alt="Blog 1" />
+        <div class="content">
+          <h3>Why Choose nopCommerce as an Open-Source E-Commerce Platform</h3>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="{% static 'images/blog2.jpg' %}" alt="Blog 2" />
+        <div class="content">
+          <h3>nopStation Themes for nopCommerce: Elevating Your E-Commerce Experience</h3>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="{% static 'images/blog3.jpg' %}" alt="Blog 3" />
+        <div class="content">
+          <h3>GITEX Global 2024: Innovation and Tech Trends with Brain Station 23</h3>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="{% static 'images/blog4.jpg' %}" alt="Blog 4" />
+        <div class="content">
+          <h3>How to Improve LMS Utilization for a Remote Workforce</h3>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="{% static 'images/blog5.jpg' %}" alt="Blog 5" />
+        <div class="content">
+          <h3>How AI Algorithms Automating Legal Landscape: Creating, Reviewing, and Managing Legal Contracts</h3>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="{% static 'images/blog6.jpg' %}" alt="Blog 6" />
+        <div class="content">
+          <h3>Enhancing AEM User Engagement: UI/UX Tips & Techniques</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="partner-section">
+    <div class="partner-container">
+      <div class="partner-content">
+        <h2>Want to Join Us as a Partner?</h2>
+        <p>With the help of our partners, we can share our expertise and resources around the world. And thus, we are expanding as the home of top IT professionals. So contact us to see how you can join our global family!</p>
+        <a href="#" class="btn-primary">See Why & How</a>
+      </div>
+      <div class="partner-image">
+        <img src="{% static 'images/partner.jpg' %}" alt="Partnership" />
+      </div>
+    </div>
+  </section>
+
+  <section class="cnt">
+    <div class="container">
+      <h1>Welcome to your about us guerrilla it ltd.</h1>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-info">
+      <h2>Guerrilla IT Ltd.</h2>
+      <p>
+        123 Business Street, Suite 202 <br /> Dhaka, Bangladesh
+      </p>
+      <p>
+        <strong>Phone:</strong> +880 1719-109547
+      </p>
+      <h2>Google My Business</h2>
+      <p>Guerrilla IT Ltd. is committed to providing top-notch IT solutions, ensuring businesses operate efficiently and securely.</p>
+      <a href="#" class="learn-more">Learn More</a>
+    </div>
+    <div class="office-hours">
+      <h2>Office Hours</h2>
+      <ul>
+        <li>
+          <span>Sunday - thursday</span> <span>9:00 AM - 5:00 PM</span>
+        </li>
+        <li>
+          <span>Friday - Saturday</span> <span>Closed</span>
+        </li>
+      </ul>
+    </div>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9021934223024!2d90.41251807515623!3d23.7508854786604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b895d1e03c6d%3A0xb90e1c795dfc5b5d!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1709678345678" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+{% endblock %}

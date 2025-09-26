@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contact %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1.0.1" />
+
+  <!-- Banner Section -->
+  <section class="banner">
+    <div class="overlay">
+      <h1>CONTACT</h1>
+      <p>If you have a product design that you would like to discuss, a technical problem in need of a solution, or if you just wish you could add more capabilities to your existing engineering team, please contact us.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-container">
+    <div class="form-section">
+      <h2>Contact</h2>
+      <p>
+        <span>*</span> indicates required fields
+      </p>
+      <form>
+        <input type="text" placeholder="Name *" required />
+        <input type="email" placeholder="Email *" required />
+        <input type="tel" placeholder="Phone *" required />
+        <textarea placeholder="Message *" required></textarea>
+        <p class="policy">
+          This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+        </p>
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+
+    <div class="info-section">
+      <div class="info-block">
+        <h3>Give us a Call</h3>
+        <p>📞 (+880) 1511 349547</p>
+      </div>
+      <div class="info-block">
+        <h3>Savar Office</h3>
+        <p>
+          📍 C-9/18 Radhi Bari<br />Savar, ZIP 1345
+        </p>
+        <p>📞 (+880) 1511 349547</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d300.9148696209079!2d90.26456960666827!3d23.86077917485955!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755e980fa1746b1%3A0x4d96d2edb86bd916!2zVjc2Nys2VjgsIOCmuOCmvuCmreCmvuCmsA!5e0!3m2!1sbn!2sbd!4v1745772875852!5m2!1sbn!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+{% endblock %}
