@@ -45,3 +45,24 @@ class Testimonial(models.Model):
     def __str__(self):
         return self.author
 
+
+class Resource(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    file = models.FileField(upload_to='resources/')
+    image = models.ImageField(upload_to='resources/images/', blank=True, null=True)  # Optional icon
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to="blog_images/", blank=True, null=True)
+    category = models.CharField(max_length=100, default="General")
+    published_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

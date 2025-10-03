@@ -12,45 +12,17 @@
   </header>
 
   <section class="resources" id="resourceList">
+    {% for resource in resources %}
     <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Guide Icon" />
-      <h3>Startup Toolkit</h3>
-      <p>Essential tools & templates for launching your business.</p>
-      <a href="#" class="btn-download" download>Download</a>
+      {% if resource.image %}
+      <img src="{{ resource.image.url }}" alt="{{ resource.title }}" />
+      {% endif %}
+      <h3>{{ resource.title }}</h3>
+      <p>{{ resource.description}}</p>
+      <a href="{{ resource.file.url }}" class="btn-download" download>Download</a>
     </div>
 
-    <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/545/545705.png" alt="Code Icon" />
-      <h3>Developer API Docs</h3>
-      <p>Full API documentation for integration.</p>
-      <a href="#" class="btn-download" download>Download</a>
-    </div>
-
-    <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="SEO Icon" />
-      <h3>SEO Checklist</h3>
-      <p>Optimize your website with this detailed guide.</p>
-      <a href="#" class="btn-download" download>Download</a>
-    </div>
-
-    <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1865/1865269.png" alt="Marketing Icon" />
-      <h3>Marketing Playbook</h3>
-      <p>Growth strategies for digital marketing success.</p>
-      <a href="#" class="btn-download" download>Download</a>
-    </div>
-    <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/545/545705.png" alt="Code Icon" />
-      <h3>Developer API Docs</h3>
-      <p>Full API documentation for integration.</p>
-      <a href="#" class="btn-download" download>Download</a>
-    </div>
-    <div class="resource-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Guide Icon" />
-      <h3>Startup Toolkit</h3>
-      <p>Essential tools & templates for launching your business.</p>
-      <a href="#" class="btn-download" download>Download</a>
-    </div>
+    {% endfor %}
   </section>
 
   <script src="{% static 'js/resources.js' %}"></script>
