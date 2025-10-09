@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ko8n$up&-xo4id(&!fo^j+=lq1@1nd9kj_&_(1*%41v0#2*+9r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['guerrilla-it.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['guerrillait.net','www.guerrillait.net' 'localhost', '127.0.0.1']
 
 
 # Application definition
